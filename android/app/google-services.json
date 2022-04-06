@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "408474224126",
+    "project_id": "fotoshare-5b821",
+    "storage_bucket": "fotoshare-5b821.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408474224126:android:50c517b4202c787546acaf",
+        "android_client_info": {
+          "package_name": "mx.iteso.foto_share"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "408474224126-tthh58cn8kqs9qss6egnr8a26nniv6pd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.iteso.foto_share",
+            "certificate_hash": "95f590feb42d3e68c8ad7ac8edec550a504428ce"
+          }
+        },
+        {
+          "client_id": "408474224126-u0ee26acg6fld12ubm7fdec930ss50ia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7FCxYI_0N5XxYByNZLA6K41VWwSbyOpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "408474224126-u0ee26acg6fld12ubm7fdec930ss50ia.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
