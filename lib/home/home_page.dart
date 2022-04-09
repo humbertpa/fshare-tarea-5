@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foto_share/content/agregar/add_form.dart';
 import 'package:foto_share/content/espera/en_espera.dart';
+import 'package:foto_share/content/foru/fotosu.dart';
 import 'package:foto_share/content/mis_fotos/mi_contenido.dart';
 
 import '../login/bloc/auth_bloc.dart';
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   final _pageList = [
-    Center(child: Text("Fotos 4U")),
+    FotosU(),
     EnEspera(),
     AddForm(),
     MiContenido(),

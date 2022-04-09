@@ -26,7 +26,7 @@ class MiContenido extends StatelessWidget {
           );
         } else if (state is MyContentSuccessState) {
           return Container(
-            height: MediaQuery.of(context).size.height * .3,
+            height: MediaQuery.of(context).size.height * .4,
             width: MediaQuery.of(context).size.width,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
