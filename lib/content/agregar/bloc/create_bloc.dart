@@ -15,6 +15,7 @@ part 'create_state.dart';
 
 class CreateBloc extends Bloc<CreateEvent, CreateState> {
   File? _selectedPicture;
+
   CreateBloc() : super(CreateInitial()) {
     on<OnCreateTakePictureEvent>(_takePicture);
     on<OnCreateSaveDataEvent>(_saveData);

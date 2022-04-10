@@ -34,7 +34,7 @@ class MiContenido extends StatelessWidget {
               itemCount: state.myData.length,
               itemBuilder: (BuildContext context, int index) {
                 return ItemCargado(
-                  nonPublicFData: state.myData[index],
+                  Data: state.myData[index],
                 );
               },
             ),

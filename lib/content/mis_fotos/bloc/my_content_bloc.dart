@@ -10,6 +10,7 @@ part 'my_content_state.dart';
 class MyContentBloc extends Bloc<MyContentEvent, MyContentState> {
   MyContentBloc() : super(MyContentInitial()) {
     on<MyContentEvent>(_getMyDisabledContent);
+    on<EditFotoEvent>(_editarFoto);
   }
 
   FutureOr<void> _getMyDisabledContent(event, emit) async {
@@ -30,10 +31,19 @@ class MyContentBloc extends Bloc<MyContentEvent, MyContentState> {
           await FirebaseFirestore.instance.collection("fshare").get();
 
       // query de Dart filtrando la info utilizando como referencia la lista de ids de docs del usuario actual
-      var myContentList = queryFotos.docs
+/*       var myContentList = queryFotos.docs
           .where((doc) => listIds.contains(doc.id))
           .map((doc) => doc.data().cast<String, dynamic>())
-          .toList();
+          .toList(); */
+
+      var myContentList =
+          queryFotos.docs.where((doc) => listIds.contains(doc.id)).map((doc) {
+        var mp = doc.data().cast<String, dynamic>();
+        mp["id"] = doc.id;
+        return mp;
+      }).toList();
+
+      myContentList.forEach((mapa) => print("${mapa["id"]}\n"));
 
       // lista de documentos filtrados del usuario con sus datos de fotos en espera
       emit(MyContentSuccessState(myData: myContentList));
@@ -42,5 +52,24 @@ class MyContentBloc extends Bloc<MyContentEvent, MyContentState> {
       emit(MyContentErrorState());
       emit(MyContentEmptyState());
     }
+  }
+
+  FutureOr<void> _editarFoto(event, emit) async {
+    emit(UpdateLoadingState());
+    bool updated = await _updateFshare(event.dataToUpdate);
+    emit(updated ? UpdateSuccessState() : UpdateErrorState());
+  }
+
+  Future<bool> _updateFshare(Map<String, dynamic> dataToUpdate) async {
+    var docRef = await FirebaseFirestore.instance.collection("fshare");
+    print("Mapa antiguo\n${dataToUpdate}");
+    docRef.doc(dataToUpdate['id']).update(dataToUpdate).then((value) {
+      print("Informacion actualizada");
+      return true;
+    }).catchError((error) {
+      print("No se pudo actualizar la informacion: $error");
+      return false;
+    });
+    return false;
   }
 }
