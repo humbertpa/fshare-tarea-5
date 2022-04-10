@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foto_share/content/espera/bloc/pending_bloc.dart';
 
 import 'bloc/my_content_bloc.dart';
 
@@ -113,6 +114,9 @@ class _ItemCargadoState extends State<ItemCargado> {
                               .add(EditFotoEvent(dataToUpdate: fshareUpdate));
 
                           Navigator.pop(context, 'OK');
+
+                          BlocProvider.of<PendingBloc>(context)
+                              .add(GetAllMyDisabledFotosEvent());
                         },
                         child: const Text('OK'),
                       ),
