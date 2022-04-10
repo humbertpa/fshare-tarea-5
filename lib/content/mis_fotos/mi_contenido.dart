@@ -40,6 +40,7 @@ class MiContenido extends StatelessWidget {
             ),
           );
         } else {
+          print(state);
           return Center(
             child: CircularProgressIndicator(),
           );
