@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -54,8 +55,7 @@ class _ItemCargadoState extends State<ItemCargado> {
                 showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                    title:
-                        Text("${widget.Data["title"]}\n${widget.Data["id"]}"),
+                    title: Text("${widget.Data["title"]}"),
                     content: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -67,6 +67,9 @@ class _ItemCargadoState extends State<ItemCargado> {
                             labelText: 'Titulo',
                           ),
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         TextField(
                           controller: _cPicture..text = widget.Data["picture"],
                           obscureText: false,
@@ -75,8 +78,12 @@ class _ItemCargadoState extends State<ItemCargado> {
                             labelText: 'imageUrl',
                           ),
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         TextField(
-                          controller: _cStars, //..value = widget.Data["stars"],
+                          controller: _cStars
+                            ..text = widget.Data["stars"].toString(),
                           keyboardType: TextInputType.number,
                           obscureText: false,
                           decoration: InputDecoration(
@@ -95,6 +102,9 @@ class _ItemCargadoState extends State<ItemCargado> {
                         onPressed: () {
                           print("Aqui vamos");
                           Map<String, dynamic> fshareUpdate = widget.Data;
+                          fshareUpdate["publishedAt"] =
+                              Timestamp.fromDate(DateTime.now());
+                          fshareUpdate["public"] = _switchValue;
                           fshareUpdate["picture"] = _cPicture.text;
                           fshareUpdate["stars"] = _cStars.text;
                           fshareUpdate["title"] = _cTitle.text;
